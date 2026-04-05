@@ -15,5 +15,8 @@ Load this file when Phase 2 is entered. These conditionals handle edge cases in 
 ## Contradictions
 - IF user's answers contradict each other: surface the contradiction per Decision Authority escalation rules. Do not resolve it.
 
+## Counter-Questions
+- IF user answers some questions and asks clarifying counter-questions about others: answer their questions directly (this does not count as an SOP invocation), then re-ask the unanswered Phase 2 questions. Counts toward round 2.
+
 ## New Prompt Submission
 - IF user submits a new prompt instead of answering: treat as fresh Phase 1 input and abandon the pending flow. If ambiguous, ask before proceeding.
