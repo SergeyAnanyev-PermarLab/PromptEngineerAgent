@@ -2,7 +2,7 @@
 
 A Claude Code agent specification for a Requirements Analyst that triages, clarifies, and restructures user prompts into a structured 5-dimension format (Context, Task, Vocabulary, Constraints, Acceptance Criteria).
 
-**Status: Tested and validated.** 36 test runs, 39 unique test evaluations, 95% clean pass rate, 2 bugs found and fixed, 0 open Critical or Major issues.
+**Status: Author-tested; independent validation welcome.** 36 test runs by a single rater on a single day. 39 unique test evaluations, 95% clean pass rate (37/39), 2 bugs found and fixed, 0 open Critical or Major issues. See [Limitations](#limitations) for what this does and does not demonstrate.
 
 ## What This Is
 
@@ -18,7 +18,7 @@ The agent never executes the optimized prompt. It structures prompts — the use
 
 ## Design Methodology
 
-Built using the **Six Laws of Context Engineering**, a research-backed methodology for designing LLM agent specifications. Full methodology with 14 verified citations in `references/METHODOLOGY.md`. The six laws:
+Built using the **Six Laws of Context Engineering**, a set of design principles for LLM agent specifications, synthesized from peer-reviewed research on LLM behavior. "Laws" is aspirational naming — these are empirically-motivated heuristics, not universally validated rules. Full methodology with 14 verified citations in `references/METHODOLOGY.md`. The six principles:
 
 1. **Vocabulary Routing** — 15-30 precise domain terms in 3-5 clusters with attribution
 2. **Real-World Roles** — real job titles, brief identity statements, no flattery
@@ -39,7 +39,7 @@ All citations verified against primary sources via arXiv, ACL Anthology, and pub
 | Bugs found and fixed | 2 (DBG-001 activation, DBG-002 disambiguation) |
 | Open Critical/Major issues | 0 |
 | Anti-patterns confirmed | 7/7 (100%) |
-| Vocabulary calibration | 8/8 correct decisions (100%) |
+| Vocabulary calibration (test outcomes) | 8/8 correct inclusion/exclusion decisions (100%) |
 | Phase 2 sentinel exact match | 4/4 (100%) |
 | Cross-prompt contamination | 0 instances across all multi-prompt tests |
 | Sources verified against web | 14/14 exist, 4 corrections applied |
@@ -87,6 +87,36 @@ tests/
   debug-log.md                         # 2 investigations (DBG-001, DBG-002) with 5-step protocol
   regression-suite.md                  # 10 core + conditional regression tests
 ```
+
+## Limitations
+
+This section documents what the current testing does and does not establish, and where the methodology's evidence base has gaps.
+
+### Testing Scope
+
+- **Single rater, single session.** All 36 test runs were conducted by the author on 2026-04-05. Inter-rater reliability is untested. LLM behavior varies across sessions, model versions, and system load — a single-day test suite provides a snapshot, not a reliability guarantee.
+- **Compliance testing only.** All tests verify the agent follows its own spec. No test measures whether restructured prompts produce *better LLM outputs* than the originals. The core value proposition (structured prompts → higher-quality responses) is reasonable but untested in this project.
+- **Small sample sizes.** Most test cases have 1-2 observations. The 95% pass rate is a point estimate — the confidence interval is wide. No statistical significance claims are warranted.
+
+### Calibration Framework
+
+The file `tests/calibration.md` defines 6 tunable parameters with hypotheses, spec locations, and data collection tables. **All data tables are currently empty.** The calibration framework exists but has not been populated with empirical data. The "Vocabulary calibration: 8/8" metric in the test results table refers to test case pass/fail outcomes, not formal parameter tuning.
+
+### Methodology Transfer Assumptions
+
+- **Law 3 (Scaling Laws)** cites Kim et al.'s research on multi-agent systems. This project is single-agent. The law is included for completeness and to justify the single-agent design choice, but the 45% threshold from Kim et al. was validated in a multi-agent context, not prompt specification design.
+- **Law 1 (Vocabulary Routing)** cites Ranjan's +0.658 Spearman correlation for word embeddings. The link between embedding quality and instruction-following in agent specs is inferred, not directly demonstrated.
+
+### Untested Scenarios
+
+- **Adversarial inputs:** No test cases probe injection-style attacks or inputs designed to subvert the SOP.
+- **Model version variance:** All testing used one Claude model. Behavior may differ across model versions (Sonnet, Opus, Haiku).
+- **Long-session degradation beyond 5 prompts:** T-28 tests up to 5 prompts. The spec warns at 8, but degradation between 5 and 8 is uncharacterized.
+- **Competing CLAUDE.md files:** Interaction between a user's global CLAUDE.md and this project-level spec is untested.
+
+### Naming
+
+The methodology uses the term "Laws." These are design heuristics derived from research synthesis — not empirically validated universal laws. The naming is aspirational and reflects the intended rigor of the underlying research, not a claim of proof.
 
 ## How to Use
 
