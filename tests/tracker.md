@@ -11,49 +11,51 @@ Track pass/deviation across runs to identify patterns. Update after every test r
 
 ## Results Grid
 
-| Test ID | Category | Run 1 | Run 2 | Run 3 | Run 4 | Run 5 | Pattern |
-|---|---|---|---|---|---|---|---|
-| T-01 | Classification | DEV-C | | | | | SOP never invoked — DBG-001 |
-| T-02 | Classification | | | | | PASS | Low. Tiebreaker toward Low. Zero questions. |
-| T-03 | Classification | | | | | PASS | Medium. Bypass met (3 dims). Domain-appropriate. |
-| T-04 | Classification | | | PASS | | | High correct. Phase 2 entered. Exact sentinel. |
-| T-05 | Classification | | | | | DEV-m | Tiebreaker fired (Medium). Bypass strict — Phase 2 not Phase 4. |
-| T-06 | Classification | | | | | PASS | Low. Vague ≠ complex. AP2/AP5 cited as restructure risks. |
-| T-07 | Phase 2 FS | | | PASS | | | Exact sentinel. 3 questions. Zero bleed-through. |
-| T-08 | Phase 2 FS | | | | | PASS | Phase 2 full stop. 3/3 domains. Exact sentinel. |
-| T-09 | Phase 2 FS | | | | | PASS | R2→Phase 3. No R3. 2-round ceiling held. |
-| T-10 | Anti-Pattern | | | | | PASS | Zero questions. Low → Phase 4. AP1 confirmed. |
-| T-11 | Anti-Pattern | | | | PASS | | Zero scope inflation. Proportionate assessment. |
-| T-12 | Anti-Pattern | | | | PASS | | No unsolicited restructure. Specific strengths. AP3 confirmed. |
-| T-13 | Anti-Pattern | | | | | PASS | Genuine new analysis. 5 new constraints. AP4 confirmed. |
-| T-14 | Anti-Pattern | | | | | PASS | Zero domain overreach. Structure without content. AP5 confirmed. |
-| T-15 | Anti-Pattern | | | | | PASS | Constraints preserved and strengthened. "Never" not softened. AP6 confirmed. |
-| T-16 | Anti-Pattern | | | | PASS | | Zero bleed-through. 3/3 on this input. AP7 confirmed. |
-| T-17 | Deliverable | | | | DEV-m | | Vocabulary/Task swapped (positions 2↔3). Content fine. |
-| T-18 | Deliverable | | | | PASS | | 10-row changelog. 100% specificity. Exceptional. |
-| T-19 | Deliverable | | | | PASS* | | Correct position+text. Blockquote format unverifiable from paste. |
-| T-20 | Deliverable | | | | PASS | | [USER: confirm?] on exactly the right constraint. |
-| T-21 | Deliverable | | | | PASS | | Zero tag leakage. Internal tracing worked. |
-| T-22 | Vocabulary | | | | | PASS | Vocabulary INCLUDED. Domain terms precise. Example 3 anchoring works. |
-| T-23 | Vocabulary | | | | | PASS | Vocabulary INCLUDED. Novel domain (legal). Generalization works. |
-| T-24 | Vocabulary | | | | | PASS | Vocabulary correctly omitted. Generic domain. |
-| T-25 | Vocabulary | | | | | PASS | Vocabulary INCLUDED. Precise quant terms. 3rd novel domain. |
-| T-26 | Session | | | | PASS* | | Partial: prompt-N warning at N=3 confirmed. Full test needs 3 complete cycles. |
-| T-27 | Session | | | | PASS | | Zero contamination. Genetics→pasta. Complete domain separation. |
-| T-28 | Session | | | | | PASS | 5 prompts. Prompt-N at 3/4/5. Zero contamination. No degradation. |
-| T-29 | Edge Case | | | | | PASS | Clean exclusion. Direct answer. SOP on-ramp offered. |
-| T-30 | Edge Case | | | | | PASS | Acknowledged 3. Sequential. "Prompt 1 of 3." No merging. |
-| T-31 | Edge Case | | | | | PASS | Skip acknowledged. Default documented. Cross-answer reasoning. |
-| T-32 | Edge Case | | | | | PASS | Found 2 contradictions (expected 1). Did not pick sides. Sentinel held. |
-| T-33 | Edge Case | | | | | PASS | 7 per-assumption rows. 3 [USER: confirm?]. Decline handled correctly. |
-| T-34 | Edge Case | | | | | PASS | Explicit abandonment. Fresh triage. Zero contamination. |
-| T-35 | Activation | PASS | PASS | | | | Greeting works — standalone and inline |
-| T-36 | Activation | DEV-M | PASS | | | | Run 2: DBG-002. Run 3: FIXED — SOP activates, Low, Phase 4 bypass |
-| T-37 | Activation | | | | | PASS | Clean exclusion. Direct answer. Zero SOP artifacts. |
-| T-38 | Activation | | | | | PASS | Clean exclusion. File-editing mode. Category 2 confirmed. |
-| T-39 | Activation | | | PASS | PASS | | Disambiguation consistent across run-04 and run-07 |
-| T-40 | Activation | | | | PASS | | DBG-001 input completes full SOP. Low → Phase 4. |
-| T-41 | Activation | | | | | PASS | 3 mode switches. Zero contamination. Router stable. |
+| Test ID | Category | Run 1 | Run 2 | Run 3 | Run 4 | Run 5 | Run 37* | Pattern |
+|---|---|---|---|---|---|---|---|---|
+| T-01 | Classification | DEV-C | | | | | | SOP never invoked — DBG-001 |
+| T-02 | Classification | | | | | PASS | | Low. Tiebreaker toward Low. Zero questions. |
+| T-03 | Classification | | | | | PASS | | Medium. Bypass met (3 dims). Domain-appropriate. |
+| T-04 | Classification | | | PASS | | | PASS | High correct. Phase 2 entered. Exact sentinel. |
+| T-05 | Classification | | | | | DEV-m | | Tiebreaker fired (Medium). Bypass strict — Phase 2 not Phase 4. |
+| T-06 | Classification | | | | | PASS | | Low. Vague ≠ complex. AP2/AP5 cited as restructure risks. |
+| T-07 | Phase 2 FS | | | PASS | | | PASS | Exact sentinel. 3 questions. Zero bleed-through. |
+| T-08 | Phase 2 FS | | | | | PASS | | Phase 2 full stop. 3/3 domains. Exact sentinel. |
+| T-09 | Phase 2 FS | | | | | PASS | | R2→Phase 3. No R3. 2-round ceiling held. |
+| T-10 | Anti-Pattern | | | | | PASS | | Zero questions. Low → Phase 4. AP1 confirmed. |
+| T-11 | Anti-Pattern | | | | PASS | | PASS | Zero scope inflation. Proportionate assessment. |
+| T-12 | Anti-Pattern | | | | PASS | | | No unsolicited restructure. Specific strengths. AP3 confirmed. |
+| T-13 | Anti-Pattern | | | | | PASS | PASS | Genuine new analysis. 5 new constraints. AP4 confirmed. |
+| T-14 | Anti-Pattern | | | | | PASS | PASS | Zero domain overreach. Structure without content. AP5 confirmed. |
+| T-15 | Anti-Pattern | | | | | PASS | | Constraints preserved and strengthened. "Never" not softened. AP6 confirmed. |
+| T-16 | Anti-Pattern | | | | PASS | | PASS | Zero bleed-through. 3/3 on this input. AP7 confirmed. |
+| T-17 | Deliverable | | | | DEV-m | | | Vocabulary/Task swapped (positions 2↔3). Content fine. |
+| T-18 | Deliverable | | | | PASS | | PASS | 10-row changelog. 100% specificity. Exceptional. |
+| T-19 | Deliverable | | | | PASS* | | PASS | Correct position+text. Blockquote format unverifiable from paste. |
+| T-20 | Deliverable | | | | PASS | | | [USER: confirm?] on exactly the right constraint. |
+| T-21 | Deliverable | | | | PASS | | PASS | Zero tag leakage. Internal tracing worked. |
+| T-22 | Vocabulary | | | | | PASS | | Vocabulary INCLUDED. Domain terms precise. Example 3 anchoring works. |
+| T-23 | Vocabulary | | | | | PASS | | Vocabulary INCLUDED. Novel domain (legal). Generalization works. |
+| T-24 | Vocabulary | | | | | PASS | | Vocabulary correctly omitted. Generic domain. |
+| T-25 | Vocabulary | | | | | PASS | | Vocabulary INCLUDED. Precise quant terms. 3rd novel domain. |
+| T-26 | Session | | | | PASS* | | | Partial: prompt-N warning at N=3 confirmed. Full test needs 3 complete cycles. |
+| T-27 | Session | | | | PASS | | | Zero contamination. Genetics→pasta. Complete domain separation. |
+| T-28 | Session | | | | | PASS | | 5 prompts. Prompt-N at 3/4/5. Zero contamination. No degradation. |
+| T-29 | Edge Case | | | | | PASS | | Clean exclusion. Direct answer. SOP on-ramp offered. |
+| T-30 | Edge Case | | | | | PASS | | Acknowledged 3. Sequential. "Prompt 1 of 3." No merging. |
+| T-31 | Edge Case | | | | | PASS | | Skip acknowledged. Default documented. Cross-answer reasoning. |
+| T-32 | Edge Case | | | | | PASS | | Found 2 contradictions (expected 1). Did not pick sides. Sentinel held. |
+| T-33 | Edge Case | | | | | PASS | | 7 per-assumption rows. 3 [USER: confirm?]. Decline handled correctly. |
+| T-34 | Edge Case | | | | | PASS | | Explicit abandonment. Fresh triage. Zero contamination. |
+| T-35 | Activation | PASS | PASS | | | | | Greeting works — standalone and inline |
+| T-36 | Activation | DEV-M | PASS | | | | PASS | Run 2: DBG-002. Run 37: strongest routing — coding-adjacent real-world input |
+| T-37 | Activation | | | | | PASS | PASS | Clean exclusion. Run 37: 4 distinct inputs, all correct. |
+| T-38 | Activation | | | | | PASS | PASS | Clean exclusion. File-editing mode. Category 2 confirmed. |
+| T-39 | Activation | | | PASS | PASS | | | Disambiguation consistent across run-04 and run-07 |
+| T-40 | Activation | | | | PASS | | | DBG-001 input completes full SOP. Low → Phase 4. |
+| T-41 | Activation | | | | | PASS | PASS | Run 37: 6+ mode switches — strongest validation. |
+
+*Run 37 = observational validation from production use (not controlled test inputs). See run-2026-04-05-37.md for methodology notes.
 
 ## Pattern Legend
 - **Stable:** PASS across all runs
@@ -102,3 +104,4 @@ Track pass/deviation across runs to identify patterns. Update after every test r
 | run-2026-04-05-34 | 2026-04-05 | post-DBG-002 fix | T-38 | 1/1 | PASS. File-edit exclusion. Zero SOP artifacts. |
 | run-2026-04-05-35 | 2026-04-05 | post-DBG-002 fix | T-30 | 1/1 | PASS. Multi-prompt acknowledged. Sequential. Independent triage. |
 | run-2026-04-05-36 | 2026-04-05 | post-DBG-002 fix | T-28 | 1/1 | PASS. 5-prompt endurance. Zero degradation. FINAL TEST. |
+| run-2026-04-05-37 | 2026-04-05 | post-review | T-04,07,11,13,14,16,18,19,21,36,37,38,41 | 13/13 | Observational: production use (dnd-session-manager prompt chain). Strongest T-36, T-41 signals. |

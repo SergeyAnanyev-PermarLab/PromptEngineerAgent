@@ -2,7 +2,7 @@
 
 A Claude Code agent specification for a Requirements Analyst that triages, clarifies, and restructures user prompts into a structured 5-dimension format (Context, Task, Vocabulary, Constraints, Acceptance Criteria).
 
-**Status: Author-tested; independent validation welcome.** 36 test runs by a single rater on a single day. 39 unique test evaluations, 95% clean pass rate (37/39), 2 bugs found and fixed, 0 open Critical or Major issues. See [Limitations](#limitations) for what this does and does not demonstrate.
+**Status: Author-tested; independent validation welcome.** 37 test runs (36 controlled + 1 observational from production use). 52 unique test evaluations, 96% clean pass rate (50/52), 2 bugs found and fixed, 0 open Critical or Major issues. See [Limitations](#limitations) for what this does and does not demonstrate.
 
 ## What This Is
 
@@ -33,16 +33,17 @@ All citations verified against primary sources via arXiv, ACL Anthology, and pub
 
 | Metric | Result |
 |---|---|
-| Test runs | 36 |
-| Unique test evaluations | 39 |
-| Pass rate | 95% (37 pass, 2 minor deviations) |
+| Test runs | 37 (36 controlled + 1 observational) |
+| Unique test evaluations | 52 |
+| Pass rate | 96% (50 pass, 2 minor deviations) |
 | Bugs found and fixed | 2 (DBG-001 activation, DBG-002 disambiguation) |
 | Open Critical/Major issues | 0 |
 | Anti-patterns confirmed | 7/7 (100%) |
 | Vocabulary calibration (test outcomes) | 8/8 correct inclusion/exclusion decisions (100%) |
-| Phase 2 sentinel exact match | 4/4 (100%) |
+| Phase 2 sentinel exact match | 5/5 (100%) |
 | Cross-prompt contamination | 0 instances across all multi-prompt tests |
 | Sources verified against web | 14/14 exist, 4 corrections applied |
+| Production use validation | 13/13 tests passed during real-world prompt chain engineering |
 
 ### Bugs Found and Fixed During Testing
 
@@ -51,6 +52,10 @@ All citations verified against primary sources via arXiv, ACL Anthology, and pub
 **DBG-002 (Major): Disambiguation fired on unambiguous prompts.** The Input Router's "when ambiguous, ask" instruction was too sensitive — any coding-style prompt triggered disambiguation. Fixed by reframing to a closed-form check: only disambiguate when input partially matches an exclusion category.
 
 Both bugs were found, diagnosed with a 5-step debug protocol, fixed, and confirmed resolved through regression testing. Full investigation records in `tests/debug-log.md`.
+
+### Production Use Validation (Run 37)
+
+The agent was used for a real-world prompt engineering task: designing a 4-prompt coordinator activation chain for a D&D Session Manager Electron application (40 tasks across 8 phases, 1,376-line design document). During this production use, 13 test behaviors were observed passing — including the strongest signals to date for input routing (T-36: coding-adjacent phrasing correctly routed to SOP), scope discipline (T-11: zero inflation despite access to full 40-task spec), and mode switching (T-41: 6+ switches in one conversation). Full details in `tests/runs/run-2026-04-05-37.md`.
 
 ### Minor Deviations (not fixed — cosmetic)
 
@@ -79,9 +84,9 @@ tests/
     T26-T28-session-continuity.md      # Cross-prompt contamination (3 tests)
     T29-T34-edge-cases.md             # Boundary conditions (6 tests)
     T35-T41-activation.md             # Activation signal + Input Router (7 tests)
-  runs/                                # 36 test run logs
+  runs/                                # 37 test run logs
     _run-template.md                   # Template for recording results
-    run-2026-04-05-01.md through run-2026-04-05-36.md
+    run-2026-04-05-01.md through run-2026-04-05-37.md
   tracker.md                           # Aggregate pass/deviation grid across all runs
   calibration.md                       # 6 tunable parameters with data collection tables
   debug-log.md                         # 2 investigations (DBG-001, DBG-002) with 5-step protocol
