@@ -14,29 +14,23 @@ Scope: All 14 sources in references/METHODOLOGY.md § 7 Source Table
 - **Author:** Rajeev Ranjan — MATCHES
 - **Date:** December 7, 2025 — MATCHES (2025)
 - **Key abstract claims:** "+0.29 Spearman on SimLex-999," "+0.73 recovered correlation," 7 embedding models, 3 benchmarks
-- **Status:** MAJOR ISSUE
-- **Discrepancy:** Cited +0.66 Spearman correlation doesn't appear in abstract. Abstract reports "+0.29 Spearman on SimLex-999" (improvement for models with existing baselines) and "+0.73" (absolute correlation recovered from near-zero). The +0.66 may appear elsewhere in the full paper (possibly a different benchmark or metric), but it's not the headline finding.
-- **Resolution:** Verified against full paper via arxiv.org/html. The exact value "0.66" does not appear — the closest match is **+0.658** (voyage-3 model on SimLex-999, improving from near-zero baseline to 0.658). The METHODOLOGY's "+0.66" is +0.658 rounded — technically present in the paper but only for near-zero-baseline models, not the general case. Source table updated from "+0.66 Spearman" to "+0.66 Spearman (near-zero baseline models; +0.29 for models with existing baselines)" for precision.
+- **Discrepancy:** Cited +0.66 Spearman correlation doesn't appear in abstract. Abstract reports "+0.29" (improvement for models with existing baselines) and "+0.73" (absolute correlation recovered from near-zero). Verified against full paper: the closest match is +0.658 (voyage-3 model on SimLex-999, improving from near-zero baseline). The "+0.66" is +0.658 rounded — present in the paper but only for near-zero-baseline models, not the general case. Source table updated to "+0.66 Spearman (near-zero baseline models; +0.29 for models with existing baselines)" for precision.
 
-### Source 2: "Jansen" et al. (2025)
+### Source 2: Kim et al. (2025)
 - **arXiv:** 2512.08296
 - **Fetched title:** "Towards a Science of Scaling Agent Systems" — MATCHES
-- **Authors:** Kim, Gu, Park, et al. — DOES NOT MATCH "Jansen"
+- **Authors:** Yubin Kim, Ken Gu, Chanwoo Park, et al. — originally cited as "Jansen et al."
 - **Date:** December 9, 2025 — MATCHES (2025)
 - **Key abstract claims:** 180 configurations confirmed, ~45% threshold confirmed, sequential degradation confirmed, centralized coordination +81% confirmed
-- **Status:** CRITICAL ISSUE
-- **Discrepancy:** No author named "Jansen" appears in the author list. Actual authors are Yubin Kim, Ken Gu, Chanwoo Park, Chunjong Park, Samuel Schmidgall, A. Ali Heydari, Yao Yan, Zhihan Zhang, Yuchen Zhuang, Mark Malhotra, Paul Pu Liang, Hae Won Park, Yuzhe Yang, Xuhai Xu, Yilun Du, Shwetak Patel, Tim Althoff, Daniel McDuff, Xin Liu. The institutional affiliation "Google/MIT" is not confirmed from the arXiv page. Paper content (title, arXiv ID, year, and content claims) is correct — only the author attribution was wrong.
-- **Resolution:** Changed "Jansen et al. (2025, Google/MIT)" → "Kim et al. (2025)" throughout METHODOLOGY.md and six-laws.md. Also removed unverified "DeepMind" prose attribution.
+- **Discrepancy:** No author named "Jansen" appears in the author list. The institutional affiliation "Google/MIT" is not confirmed from the arXiv page. Paper content (title, arXiv ID, year, and content claims) is correct — only the author attribution was wrong. Corrected to "Kim et al. (2025)" throughout METHODOLOGY.md and six-laws.md. Also removed unverified "DeepMind" prose attribution.
 
 ### Source 3: Song et al. (2024), CaptainAgent
 - **arXiv:** 2405.19425
 - **Fetched title:** "Adaptive In-conversation Team Building for Language Model Agents"
 - **Authors:** Linxin Song et al. — MATCHES
 - **Date:** May 29, 2024 — MATCHES (2024)
-- **Key abstract claims:** "Captain Agent" framework confirmed, "21.94% improvement in average accuracy" (not 30.43%), "six real-world scenarios" (not 4 of 5)
-- **Status:** MAJOR ISSUE (resolved — figures verified)
-- **Discrepancy:** Abstract reports 21.94% average improvement across six scenarios; METHODOLOGY cited 30.43% in 4 of 5 scenarios with 541 agents. These figures come from different experimental conditions than the abstract.
-- **Resolution:** Verified against full paper via arxiv.org/html. "30.43%" appears in Section 3.4.1 (adaptive vs. static team comparison on data analysis tasks specifically). "541 agents" appears in Section 3.4.5 (total agent library accumulated across all experiments). "4 of 5 scenarios" is from the ablation study (Section 3.4). The abstract's "21.94%" is the average across all scenarios; 30.43% is the peak on data analysis. All figures are accurate as cited — no correction needed.
+- **Key abstract claims:** "Captain Agent" framework confirmed, "21.94% improvement in average accuracy," "six real-world scenarios"
+- **Discrepancy:** Abstract reports 21.94% average improvement across six scenarios; METHODOLOGY cited 30.43% in 4 of 5 scenarios with 541 agents. Verified against full paper: "30.43%" appears in Section 3.4.1 (data analysis tasks specifically), "541 agents" in Section 3.4.5 (total accumulated library), "4 of 5 scenarios" from the ablation study (Section 3.4). The abstract's figures are averages across the main benchmark; the cited figures are from specific experimental conditions. All figures are accurate as cited — no correction needed.
 
 ### Source 4: Hong et al. (2023), MetaGPT
 - **arXiv:** 2308.00352
@@ -44,9 +38,7 @@ Scope: All 14 sources in references/METHODOLOGY.md § 7 Source Table
 - **Authors:** Sirui Hong et al. — MATCHES
 - **Date:** August 1, 2023 — MATCHES (2023)
 - **Key abstract claims:** SOPs in multi-agent systems, assembly line paradigm, reduces hallucination cascading — direction matches
-- **Status:** MINOR ISSUE (resolved)
-- **Discrepancy:** Specific percentages (67% revision cost reduction, 67% executability improvement) not stated in abstract. The "~40% reduction in error propagation" attributed to MetaGPT in §6 does not appear in the paper at all.
-- **Resolution:** Verified against full paper via arxiv.org/html. The 67% figures are derivable from Table 1 data: Human Revision Cost: ChatDev 2.5 → MetaGPT 0.83, calculated (2.5−0.83)/2.5 = 66.8% ≈ 67%; Executability: ChatDev 2.25 → MetaGPT 3.75, calculated (3.75−2.25)/2.25 = 66.7% ≈ 67%. Standard academic practice (computed, not stated). Source table updated to note figures are computed from Table 1. The unverifiable "~40% error propagation" claim was removed from §6 prose.
+- **Discrepancy:** The 67% figures are not stated in the abstract or paper text but are derivable from Table 1 data (Human Revision Cost: ChatDev 2.5 → MetaGPT 0.83 = 66.8%; Executability: ChatDev 2.25 → MetaGPT 3.75 = 66.7%). Source table updated to note figures are computed from Table 1. The "~40% reduction in error propagation" attributed to MetaGPT in §6 does not appear anywhere in the paper — this claim was removed from §6 prose.
 
 ### Source 5: Hu et al. (2026), PRISM
 - **arXiv:** 2603.18507
@@ -54,7 +46,7 @@ Scope: All 14 sources in references/METHODOLOGY.md § 7 Source Table
 - **Authors:** Zizhao Hu, Mohammad Rostami, Jesse Thomason — MATCHES "Hu, Rostami, Thomason, USC"
 - **Date:** March 19, 2026 — MATCHES (2026)
 - **Key abstract claims:** Persona effects on alignment vs accuracy confirmed, PRISM system confirmed
-- **Status:** CLEAN. Specific MMLU figures (71.6%, 68.0%, 66.3%) not in abstract but may be in paper.
+- **Status:** Clean. Specific MMLU figures (71.6%, 68.0%, 66.3%) not in abstract but may be in paper.
 
 ### Source 6: Cemri et al. (2025), MAST
 - **arXiv:** 2503.13657
@@ -62,61 +54,58 @@ Scope: All 14 sources in references/METHODOLOGY.md § 7 Source Table
 - **Authors:** Mert Cemri et al. — MATCHES
 - **Date:** March 17, 2025 — MATCHES (2025)
 - **Key abstract claims:** 1600+ annotated traces confirmed, 7 frameworks confirmed, 14 failure modes in 3 categories confirmed
-- **Status:** CLEAN.
+- **Status:** Clean.
 
-### Source 7: "Wu" et al. (2025), "Lost in the Middle at Birth"
+### Source 7: Chowdhury (2026), "Lost in the Middle at Birth"
 - **arXiv:** 2603.10123
 - **Fetched title:** "Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias" — MATCHES
-- **Authors:** Borun D Chowdhury (single author) — DOES NOT MATCH "Wu et al."
-- **Date:** March 10, 2026 — DOES NOT MATCH (cited as 2025)
+- **Authors:** Borun D Chowdhury (single author) — originally cited as "Wu et al."
+- **Date:** March 10, 2026 — originally cited as 2025
 - **Key abstract claims:** Architectural origin confirmed ("initialization"), causal masking confirmed, residual connections confirmed, "factorial dead zone" matches O(1/(H-1)!) claim
-- **Status:** CRITICAL ISSUE
-- **Discrepancy:** No author named "Wu" appears. The paper is by Borun D Chowdhury (single author). The submission date is March 10, 2026 (arXiv prefix 2603 = March 2026), not 2025. MIT affiliation not confirmed from abstract. Paper content (title, arXiv ID, and content claims) is correct.
-- **Resolution:** Changed "Wu et al. (2025, MIT)" → "Chowdhury (2026)" throughout METHODOLOGY.md and six-laws.md. Year corrected from 2025 to 2026 in source table.
+- **Discrepancy:** No author named "Wu" appears — the paper is by Borun D Chowdhury (single author). The submission date is March 2026 (arXiv prefix 2603), not 2025. MIT affiliation not confirmed from abstract. Paper content (title, arXiv ID, and content claims) is correct. Corrected to "Chowdhury (2026)" throughout METHODOLOGY.md and six-laws.md.
 
 ### Source 8: Liu et al. (2024), "Lost in the Middle"
 - **Publication:** TACL, volume 12, pages 157-173
 - **Authors:** Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, Percy Liang — MATCHES
 - **Date:** 2024 — MATCHES
 - **Key claims:** U-shaped performance curve confirmed
-- **Status:** CLEAN.
+- **Status:** Clean.
 
 ### Source 9: Zamfirescu-Pereira et al. (2023), "Why Johnny Can't Prompt"
 - **Publication:** CHI '23 (April 23–28, 2023, Hamburg)
 - **Authors:** J.D. Zamfirescu-Pereira (UC Berkeley), Richmond Wong, Bjoern Hartmann, Qian Yang
 - **Date:** 2023 — MATCHES
 - **Key claims:** User prompt failure patterns, most-downloaded CHI paper — confirmed
-- **Status:** CLEAN.
+- **Status:** Clean.
 
 ### Source 10: Schreiter (2024)
 - **Type:** Master's thesis, Georg-August-Universität Göttingen (also on arXiv: 2505.17037)
 - **Author:** Dimitri Schreiter — MATCHES
 - **Date:** Thesis October 2024, arXiv May 2025 — cited as 2024, MATCHES thesis date
 - **Key claims:** Optimal specificity range, tested across STEM/law/medicine — confirmed
-- **Status:** CLEAN. Specific numbers (17.72-19.70, rho=-0.89) not in search summary but direction confirmed.
+- **Status:** Clean. Specific numbers (17.72-19.70, rho=-0.89) not in search summary but direction confirmed.
 
 ### Source 11: Anthropic, "Building Effective Agents" (2024)
 - **URL:** https://www.anthropic.com/research/building-effective-agents
 - **Date:** December 19, 2024 — MATCHES
 - **Key claims:** Five workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer) — confirmed. Structured handoffs recommended — confirmed.
-- **Status:** CLEAN.
-- **Note:** The "tool description quality = 40% swing in completion" originally attributed to this source was not found. The post states Anthropic "spent more time optimizing our tools than the overall prompt" during SWE-bench but provides no percentage. The unverifiable 40% claim was removed from the source table.
+- **Discrepancy:** The "tool description quality = 40% swing in completion" originally attributed to this source was not found. The post states Anthropic "spent more time optimizing our tools than the overall prompt" during SWE-bench but provides no percentage. The 40% claim was removed from the source table.
 
 ### Source 12: Anthropic, Context Engineering Guide (2025)
 - **URL:** https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 - **Date:** September 2025 — MATCHES
 - **Key claims:** Progressive disclosure, layered context, context budgeting — confirmed. "60-70% usable window" not directly confirmed in search summary but context budgeting discussed.
-- **Status:** CLEAN. The 60-70% figure may need verification against the actual guide text.
+- **Status:** Clean. The 60-70% figure may need verification against the actual guide text.
 
 ### Source 13: IBM, Prompt Engineering Documentation (2024)
 - **URL:** https://www.ibm.com/think/topics/prompt-engineering
 - **Key claims:** "every word in a prompt can influence the outcome," vocabulary precision as quality driver — confirmed
-- **Status:** CLEAN.
+- **Status:** Clean.
 
 ### Source 14: DigitalOcean, Prompt Engineering Guide (2024)
 - **URL:** https://www.digitalocean.com/resources/articles/prompt-engineering-best-practices
 - **Key claims:** "instead of assigning a role, try being explicit about the perspective you want" — confirmed. Perspective-framing over identity assignment — confirmed.
-- **Status:** CLEAN.
+- **Status:** Clean.
 
 ---
 
