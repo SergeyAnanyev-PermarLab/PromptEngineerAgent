@@ -6,96 +6,6 @@ Scope: All 14 sources in references/METHODOLOGY.md § 7 Source Table
 
 ---
 
-## Verification Summary
-
-| # | Source (as cited) | Exists? | Title Match? | Author Match? | Year Match? | Claims Verified? | Status |
-|---|---|---|---|---|---|---|---|
-| 1 | Ranjan (2025), "One Word Is Not Enough" | Yes | Yes | Yes | Yes | **Partial** | MAJOR ISSUE |
-| 2 | Jansen et al. (2025, Google/MIT), "Towards a Science of Scaling Agent Systems" | Yes | Yes | **NO** | Yes | Partial | CRITICAL ISSUE |
-| 3 | Song et al. (2024), CaptainAgent | Yes | Yes | Yes | Yes | **Partial** | MAJOR ISSUE |
-| 4 | Hong et al. (2023), MetaGPT | Yes | Yes | Yes | Yes | Partial | MINOR — unverifiable from abstract |
-| 5 | Hu et al. (2026), PRISM (USC) | Yes | Yes | Yes | Yes | Partial | CLEAN |
-| 6 | Cemri et al. (2025), MAST (UC Berkeley) | Yes | Yes | Yes | Yes | Yes | CLEAN |
-| 7 | Wu et al. (2025, MIT), "Lost in the Middle at Birth" | Yes | Yes | **NO** | **NO** | Partial | CRITICAL ISSUE |
-| 8 | Liu et al. (2024), "Lost in the Middle" (TACL) | Yes | Yes | Yes | Yes | Yes | CLEAN |
-| 9 | Zamfirescu-Pereira et al. (2023), "Why Johnny Can't Prompt" (CHI) | Yes | Yes | Yes | Yes | Yes | CLEAN |
-| 10 | Schreiter (2024), "How Prompt Vocabulary affects Domain Knowledge" | Yes | Yes | Yes | Yes | Partial | CLEAN |
-| 11 | Anthropic, "Building Effective Agents" (2024) | Yes | Yes | N/A | Yes | Yes | CLEAN |
-| 12 | Anthropic, Context Engineering Guide (2025) | Yes | Yes | N/A | Yes | Partial | CLEAN |
-| 13 | IBM, Prompt Engineering Documentation (2024) | Yes | Yes | N/A | Yes | Yes | CLEAN |
-| 14 | DigitalOcean, Prompt Engineering Guide (2024) | Yes | Yes | N/A | Yes | Yes | CLEAN |
-
-**Result: 10 CLEAN, 2 CRITICAL, 2 MAJOR, 0 HALLUCINATED**
-
-No source is fabricated. All 14 papers/guides exist and address the topics described. However, 4 sources have metadata or claim discrepancies that need correction.
-
----
-
-## Critical Issues
-
-### ISSUE 1: Source #2 — Wrong author attribution
-
-**As cited:** Jansen et al. (2025, Google/MIT), "Towards a Science of Scaling Agent Systems," arXiv:2512.08296
-
-**Actual:** The paper at arXiv:2512.08296 is authored by **Yubin Kim, Ken Gu, Chanwoo Park, Chunjong Park, Samuel Schmidgall, A. Ali Heydari, Yao Yan, Zhihan Zhang, Yuchen Zhuang, Mark Malhotra, Paul Pu Liang, Hae Won Park, Yuzhe Yang, Xuhai Xu, Yilun Du, Shwetak Patel, Tim Althoff, Daniel McDuff, Xin Liu**. No author named "Jansen" appears in the author list. The institutional affiliation "Google/MIT" is not confirmed from the arXiv page.
-
-**Correction needed:** Change "Jansen et al. (2025, Google/MIT)" to "Kim et al. (2025)" throughout METHODOLOGY.md and six-laws.md. Verify institutional affiliation from the full paper.
-
-**Paper content is correct:** The title, arXiv ID, year (2025), and content claims (180 configurations, 45% threshold, sequential degradation) all match the actual paper. Only the author attribution is wrong.
-
-### ISSUE 2: Source #7 — Wrong author attribution AND wrong year
-
-**As cited:** Wu et al. (2025, MIT), "Lost in the Middle at Birth," arXiv:2603.10123
-
-**Actual:** The paper at arXiv:2603.10123 is authored by **Borun D Chowdhury** (single author). No author named "Wu" appears. The submission date is **March 10, 2026** (arXiv prefix 2603 = March 2026), not 2025.
-
-**Corrections needed:**
-1. Change "Wu et al. (2025, MIT)" to "Chowdhury (2026)" throughout METHODOLOGY.md and six-laws.md
-2. Change year from 2025 to 2026 in the source table
-3. Verify institutional affiliation (MIT not confirmed from abstract)
-
-**Paper content is correct:** The title matches, the arXiv ID is correct, and the content claims (U-shape at initialization, causal masking, residual connections, factorial suppression) match the abstract.
-
----
-
-## Major Issues
-
-### ISSUE 3: Source #1 — Spearman correlation figure discrepancy
-
-**As cited:** "improve word embedding quality by up to +0.66 Spearman correlation"
-
-**Abstract says:** "improvements up to +0.29 in Spearman correlations on SimLex-999" and "correlations as high as +0.73" (recovered from near-zero)
-
-**Analysis:** The cited +0.66 doesn't match either figure in the abstract (+0.29 improvement, +0.73 absolute). The +0.66 may appear elsewhere in the full paper (possibly a different benchmark or metric), but it's not the headline finding. The +0.29 is the improvement figure; the +0.73 is an absolute correlation for models that started near zero.
-
-**Action:** Verify the +0.66 figure against the full paper. If not found, correct to "+0.29 Spearman correlation improvement on SimLex-999" or "+0.73 recovered correlation" depending on which finding is being cited.
-
-### ISSUE 4: Source #3 — CaptainAgent percentage and scenario count discrepancy
-
-**As cited:** "outperforms static teams in 4 of 5 scenarios, with gains up to 30.43% on data analysis tasks" and "library of 541 accumulated agents"
-
-**Abstract says:** "21.94% improvement in average accuracy" across "six real-world scenarios"
-
-**Analysis:** The cited figures (4/5 scenarios, +30.43%, 541 agents) don't match the abstract (six scenarios, 21.94%). These may be from the full paper or from different experimental conditions, but the headline numbers diverge significantly.
-
-**Action:** Verify against the full paper. The 21.94% is the average; 30.43% may be the peak on a specific task. The "4 of 5" vs "six" scenario count suggests different experimental setups. The 541 agent library may be an implementation detail not in the abstract.
-
----
-
-## Minor Issue
-
-### ISSUE 5: Source #4 — MetaGPT specific figures unverifiable from abstract
-
-**As cited:** "67% reduction in human revision cost, 67% executability improvement" (source table), "roughly 40% reduction in error propagation" (§6 text)
-
-**Abstract says:** "more coherent solutions" and "reduces logic inconsistencies due to cascading hallucinations" — no specific percentages.
-
-**Analysis:** The abstract doesn't contain the specific 67% or 40% figures. These likely come from the evaluation section of the full paper. Not necessarily wrong — just can't be verified from the abstract alone.
-
-**Action:** Low priority. Accept as unverifiable from abstract. If accuracy is critical, verify against the full paper's evaluation tables.
-
----
-
 ## Source-by-Source Verification Detail
 
 ### Source 1: Ranjan (2025)
@@ -104,7 +14,9 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Author:** Rajeev Ranjan — MATCHES
 - **Date:** December 7, 2025 — MATCHES (2025)
 - **Key abstract claims:** "+0.29 Spearman on SimLex-999," "+0.73 recovered correlation," 7 embedding models, 3 benchmarks
-- **Discrepancy:** Cited +0.66 doesn't appear in abstract. See ISSUE 3.
+- **Status:** MAJOR ISSUE
+- **Discrepancy:** Cited +0.66 Spearman correlation doesn't appear in abstract. Abstract reports "+0.29 Spearman on SimLex-999" (improvement for models with existing baselines) and "+0.73" (absolute correlation recovered from near-zero). The +0.66 may appear elsewhere in the full paper (possibly a different benchmark or metric), but it's not the headline finding.
+- **Resolution:** Verified against full paper via arxiv.org/html. The exact value "0.66" does not appear — the closest match is **+0.658** (voyage-3 model on SimLex-999, improving from near-zero baseline to 0.658). The METHODOLOGY's "+0.66" is +0.658 rounded — technically present in the paper but only for near-zero-baseline models, not the general case. Source table updated from "+0.66 Spearman" to "+0.66 Spearman (near-zero baseline models; +0.29 for models with existing baselines)" for precision.
 
 ### Source 2: "Jansen" et al. (2025)
 - **arXiv:** 2512.08296
@@ -112,7 +24,9 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Authors:** Kim, Gu, Park, et al. — DOES NOT MATCH "Jansen"
 - **Date:** December 9, 2025 — MATCHES (2025)
 - **Key abstract claims:** 180 configurations confirmed, ~45% threshold confirmed, sequential degradation confirmed, centralized coordination +81% confirmed
-- **Discrepancy:** Author attribution wrong. See ISSUE 1.
+- **Status:** CRITICAL ISSUE
+- **Discrepancy:** No author named "Jansen" appears in the author list. Actual authors are Yubin Kim, Ken Gu, Chanwoo Park, Chunjong Park, Samuel Schmidgall, A. Ali Heydari, Yao Yan, Zhihan Zhang, Yuchen Zhuang, Mark Malhotra, Paul Pu Liang, Hae Won Park, Yuzhe Yang, Xuhai Xu, Yilun Du, Shwetak Patel, Tim Althoff, Daniel McDuff, Xin Liu. The institutional affiliation "Google/MIT" is not confirmed from the arXiv page. Paper content (title, arXiv ID, year, and content claims) is correct — only the author attribution was wrong.
+- **Resolution:** Changed "Jansen et al. (2025, Google/MIT)" → "Kim et al. (2025)" throughout METHODOLOGY.md and six-laws.md. Also removed unverified "DeepMind" prose attribution.
 
 ### Source 3: Song et al. (2024), CaptainAgent
 - **arXiv:** 2405.19425
@@ -120,7 +34,9 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Authors:** Linxin Song et al. — MATCHES
 - **Date:** May 29, 2024 — MATCHES (2024)
 - **Key abstract claims:** "Captain Agent" framework confirmed, "21.94% improvement in average accuracy" (not 30.43%), "six real-world scenarios" (not 4 of 5)
-- **Discrepancy:** Percentage and scenario count differ. See ISSUE 4.
+- **Status:** MAJOR ISSUE (resolved — figures verified)
+- **Discrepancy:** Abstract reports 21.94% average improvement across six scenarios; METHODOLOGY cited 30.43% in 4 of 5 scenarios with 541 agents. These figures come from different experimental conditions than the abstract.
+- **Resolution:** Verified against full paper via arxiv.org/html. "30.43%" appears in Section 3.4.1 (adaptive vs. static team comparison on data analysis tasks specifically). "541 agents" appears in Section 3.4.5 (total agent library accumulated across all experiments). "4 of 5 scenarios" is from the ablation study (Section 3.4). The abstract's "21.94%" is the average across all scenarios; 30.43% is the peak on data analysis. All figures are accurate as cited — no correction needed.
 
 ### Source 4: Hong et al. (2023), MetaGPT
 - **arXiv:** 2308.00352
@@ -128,7 +44,9 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Authors:** Sirui Hong et al. — MATCHES
 - **Date:** August 1, 2023 — MATCHES (2023)
 - **Key abstract claims:** SOPs in multi-agent systems, assembly line paradigm, reduces hallucination cascading — direction matches
-- **Note:** Specific percentages (67%, 40%) not in abstract. See ISSUE 5.
+- **Status:** MINOR ISSUE (resolved)
+- **Discrepancy:** Specific percentages (67% revision cost reduction, 67% executability improvement) not stated in abstract. The "~40% reduction in error propagation" attributed to MetaGPT in §6 does not appear in the paper at all.
+- **Resolution:** Verified against full paper via arxiv.org/html. The 67% figures are derivable from Table 1 data: Human Revision Cost: ChatDev 2.5 → MetaGPT 0.83, calculated (2.5−0.83)/2.5 = 66.8% ≈ 67%; Executability: ChatDev 2.25 → MetaGPT 3.75, calculated (3.75−2.25)/2.25 = 66.7% ≈ 67%. Standard academic practice (computed, not stated). Source table updated to note figures are computed from Table 1. The unverifiable "~40% error propagation" claim was removed from §6 prose.
 
 ### Source 5: Hu et al. (2026), PRISM
 - **arXiv:** 2603.18507
@@ -152,7 +70,9 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Authors:** Borun D Chowdhury (single author) — DOES NOT MATCH "Wu et al."
 - **Date:** March 10, 2026 — DOES NOT MATCH (cited as 2025)
 - **Key abstract claims:** Architectural origin confirmed ("initialization"), causal masking confirmed, residual connections confirmed, "factorial dead zone" matches O(1/(H-1)!) claim
-- **Discrepancy:** Author and year wrong. See ISSUE 2.
+- **Status:** CRITICAL ISSUE
+- **Discrepancy:** No author named "Wu" appears. The paper is by Borun D Chowdhury (single author). The submission date is March 10, 2026 (arXiv prefix 2603 = March 2026), not 2025. MIT affiliation not confirmed from abstract. Paper content (title, arXiv ID, and content claims) is correct.
+- **Resolution:** Changed "Wu et al. (2025, MIT)" → "Chowdhury (2026)" throughout METHODOLOGY.md and six-laws.md. Year corrected from 2025 to 2026 in source table.
 
 ### Source 8: Liu et al. (2024), "Lost in the Middle"
 - **Publication:** TACL, volume 12, pages 157-173
@@ -180,6 +100,7 @@ No source is fabricated. All 14 papers/guides exist and address the topics descr
 - **Date:** December 19, 2024 — MATCHES
 - **Key claims:** Five workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer) — confirmed. Structured handoffs recommended — confirmed.
 - **Status:** CLEAN.
+- **Note:** The "tool description quality = 40% swing in completion" originally attributed to this source was not found. The post states Anthropic "spent more time optimizing our tools than the overall prompt" during SWE-bench but provides no percentage. The unverifiable 40% claim was removed from the source table.
 
 ### Source 12: Anthropic, Context Engineering Guide (2025)
 - **URL:** https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
