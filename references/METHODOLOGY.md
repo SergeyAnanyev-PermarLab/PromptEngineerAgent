@@ -1,12 +1,12 @@
-# Forge Methodology
+# Context Engineering Methodology
 
-How Forge designs agents and teams, why each principle exists, and the research behind it.
+How to design agents and teams, why each principle exists, and the research behind it.
 
 ---
 
 ## 1. The Vocabulary Routing Principle
 
-**What we do:** Every agent and skill in Forge carries a payload of 15-30 precise domain terms, organized into 3-5 clusters of related concepts. These are not decorative. They are the single most important element in an agent definition.
+**What we do:** Every agent and skill carries a payload of 15-30 precise domain terms, organized into 3-5 clusters of related concepts. These are not decorative. They are the single most important element in an agent definition.
 
 **Why it works:** Large language models organize knowledge in clusters within their embedding space. When a prompt contains the term "circuit breaker pattern (Nygard)," the model activates a cluster of knowledge around resilience engineering, the book *Release It!*, retry logic, bulkhead isolation, and related distributed systems concepts. When a prompt says "handle errors gracefully," the model activates a much broader, shallower cluster -- blog-post-level advice about try/catch blocks.
 
@@ -14,23 +14,23 @@ The vocabulary *is* the routing signal. A single precise term can replace paragr
 
 Three rules govern term selection. First, the **15-year practitioner test**: would a senior practitioner with 15+ years of experience use this exact term when speaking to a peer? "Story mapping (Patton)" passes. "Best practices for planning" fails -- no senior says that to a peer. Second, **attribution amplifies routing**: including the originator of a framework ("fitness functions (Ford and Parsons)") activates more specific knowledge than the term alone. Third, **clusters should mirror expert discourse**: terms grouped together should be terms that co-occur in expert conversation. A "System Design" cluster for an architect agent might include hexagonal architecture (Cockburn), bounded context (Evans), event-driven architecture, and CQRS -- terms that a systems architect would naturally discuss together.
 
-The inverse matters too. Generic consultant-speak ("leverage," "best practices," "robust solution") activates generic business writing clusters. Buzzword stacking ("AI-driven blockchain microservices with DevSecOps") creates a scatter-shot pattern where no single knowledge cluster dominates. Both are banned in Forge agent definitions.
+The inverse matters too. Generic consultant-speak ("leverage," "best practices," "robust solution") activates generic business writing clusters. Buzzword stacking ("AI-driven blockchain microservices with DevSecOps") creates a scatter-shot pattern where no single knowledge cluster dominates. Both are banned in agent definitions.
 
-**The evidence:** Ranjan (2025), "One Word Is Not Enough," demonstrated that semantic prompt prefixes improve word embedding quality by up to +0.66 Spearman correlation through semantic priming -- contextual framing signals models to produce lexically meaningful representations. Schreiter (2024), "Prompt Engineering: How Prompt Vocabulary affects Domain Knowledge," tested vocabulary specificity on generative LLMs across STEM, law, and medicine, finding an optimal specificity range (nouns: 17.72-19.70 on their scale) rather than a linear relationship -- too generic activates shallow clusters, too specialized disrupts reasoning flow (verb specificity on GSM8K: rho = -0.89). The Anthropic context engineering guide and IBM prompt engineering documentation both identify vocabulary specificity as a primary driver of output quality. Forge's own findings from the Impeccable project confirmed that swapping generic terms for expert vocabulary measurably improved output without any other changes to prompts.
+**The evidence:** Ranjan (2025), "One Word Is Not Enough," demonstrated that semantic prompt prefixes improve word embedding quality by up to +0.66 Spearman correlation through semantic priming -- contextual framing signals models to produce lexically meaningful representations. Schreiter (2024), "Prompt Engineering: How Prompt Vocabulary affects Domain Knowledge," tested vocabulary specificity on generative LLMs across STEM, law, and medicine, finding an optimal specificity range (nouns: 17.72-19.70 on their scale) rather than a linear relationship -- too generic activates shallow clusters, too specialized disrupts reasoning flow (verb specificity on GSM8K: rho = -0.89). The Anthropic context engineering guide and IBM prompt engineering documentation both identify vocabulary specificity as a primary driver of output quality. Findings from the Impeccable project confirmed that swapping generic terms for expert vocabulary measurably improved output without any other changes to prompts.
 
 ---
 
 ## 2. The Real-World Role Principle
 
-**What we do:** Forge assigns agents real job titles -- Product Manager, Software Architect, Site Reliability Engineer -- using brief identity statements of fewer than 50 tokens. No flattery. No invented personas.
+**What we do:** Assign agents real job titles -- Product Manager, Software Architect, Site Reliability Engineer -- using brief identity statements of fewer than 50 tokens. No flattery. No invented personas.
 
-**Why it works:** The PRISM (Persona Routing via Intent-based Self-Modeling) framework (Hu, Rostami, Thomason, USC, 2026) studied how persona assignment affects LLM output across 6 models, MT-Bench, MMLU (14,042 questions), and safety benchmarks. Three findings shape Forge's approach.
+**Why it works:** The PRISM (Persona Routing via Intent-based Self-Modeling) framework (Hu, Rostami, Thomason, USC, 2026) studied how persona assignment affects LLM output across 6 models, MT-Bench, MMLU (14,042 questions), and safety benchmarks. Three findings shape this approach.
 
 First, **brief identities cause less accuracy damage.** PRISM tested three persona lengths (~5, ~75, ~150 tokens) and found a continuous gradient: MMLU baseline 71.6% → ~5-token persona 68.0% → ~150-token persona 66.3%. Llama-3.1-8B showed a catastrophic 22-point collapse (68.4% → 46.3%) with expert personas. Shorter personas trigger less interference between instruction-following and factual recall pathways. Second, **real job titles activate real knowledge clusters.** "You are a senior site reliability engineer" activates SRE-related training data -- runbooks, incident response, SLO definitions -- more effectively than "You are an expert in keeping systems running." Real titles that exist in real organizations have dense representation in the training corpus. Third, **superlatives introduce verbosity bias.** Self-evaluation judges consistently preferred longer, more confident-sounding but less accurate persona-prompted outputs. This verbosity bias degrades factual accuracy while appearing to improve quality -- models generate outputs that sound authoritative but contain more errors.
 
 There is a tension at play. PRISM identified an **alignment-accuracy tradeoff**: stronger personas improve instruction following (safety tasks gained up to +17.7 points) but reduce factual accuracy. For factual/knowledge tasks, no persona at all outperforms any persona. The solution is to keep identities brief and grounded, and to use personas selectively -- alignment-dependent tasks (safety, tone, structure) benefit; pretraining-dependent tasks (factual recall, math, coding) do not. Note: reasoning-distilled models (R1 family) showed near-zero sensitivity to persona effects.
 
-Forge operationalizes this with a strict format: real job title, primary responsibility, organizational context, reporting relationships. No superlatives. No quality claims. One role per agent -- combining titles ("You are a software architect and project manager and QA lead") fragments knowledge activation across multiple clusters.
+This is operationalized with a strict format: real job title, primary responsibility, organizational context, reporting relationships. No superlatives. No quality claims. One role per agent -- combining titles ("You are a software architect and project manager and QA lead") fragments knowledge activation across multiple clusters.
 
 **The evidence:** The PRISM framework (Hu et al., 2026) established the shorter-is-less-harmful gradient across three persona lengths and documented the alignment-accuracy tradeoff with quantitative data across 6 models. The DigitalOcean prompt engineering guide independently reached similar conclusions, recommending perspective-framing ("Analyze with focus on risk tolerance") over identity assignment ("You are a financial analyst"). Anthropic's harness design research confirmed that brief, realistic identities outperform elaborate persona descriptions.
 
@@ -38,7 +38,7 @@ Forge operationalizes this with a strict format: real job title, primary respons
 
 ## 3. The Scaling Laws: When Teams Help and When They Hurt
 
-**What we do:** Forge limits teams to 3-5 agents and requires all four of these conditions before recommending multi-agent: (1) the task is decomposable into subtasks with clean interfaces, (2) subtasks require genuinely different expertise, (3) a single-agent trial showed clear capability gaps, and (4) the project scope justifies a 3-5x token cost increase. If any condition is false, we use a single agent.
+**What we do:** Limit teams to 3-5 agents and requires all four of these conditions before recommending multi-agent: (1) the task is decomposable into subtasks with clean interfaces, (2) subtasks require genuinely different expertise, (3) a single-agent trial showed clear capability gaps, and (4) the project scope justifies a 3-5x token cost increase. If any condition is false, we use a single agent.
 
 **Why it works:** Kim et al.'s 2025 multi-agent scaling study established three principles that upend common assumptions about agent teams.
 
@@ -50,7 +50,7 @@ Forge operationalizes this with a strict format: real job title, primary respons
 
 The **45% threshold** is perhaps the most important finding. If a single well-prompted agent achieves more than 45% of optimal performance on a task, adding more agents yields diminishing returns. The single agent already covers the accessible portion of the problem; the remaining difficulty lives in coordination-heavy integration work where more agents add more overhead, not more capability.
 
-Forge operationalizes this through the **cascade pattern**: always start at Level 0 (single agent), escalate to Level 1 (agent + tools), Level 2 (worker + reviewer), Level 3 (small team), or Level 4 (multi-team) only when the current level demonstrably fails. Never skip levels.
+This is operationalized through the **cascade pattern**: always start at Level 0 (single agent), escalate to Level 1 (agent + tools), Level 2 (worker + reviewer), Level 3 (small team), or Level 4 (multi-team) only when the current level demonstrably fails. Never skip levels.
 
 **The evidence:** Kim et al. (2025), "Towards a Science of Scaling Agent Systems," tested 180 configurations across 4 benchmarks and 3 LLM families, providing the saturation data, cost multipliers (centralized: 3.85x, hybrid: 6.15x), error amplification factors (independent: 17.2x, centralized: 4.4x), and the 45% threshold (Beta = -0.408, p<0.001). Critically, sequential reasoning tasks degraded 39-70% across ALL multi-agent variants. These scaling laws proved model-agnostic (max difference in slopes: 0.023). CaptainAgent (Song et al., 2024) demonstrated that adaptive team composition -- selecting agents per-task from a library of 541 accumulated agents -- outperforms static teams in 4 of 5 scenarios, with gains up to 30.43% on data analysis tasks.
 
@@ -58,7 +58,7 @@ Forge operationalizes this through the **cascade pattern**: always start at Leve
 
 ## 4. The Anti-Pattern Principle
 
-**What we do:** Every agent and skill definition in Forge includes 5-10 named failure modes, each with detection signals and resolution steps. These are not suggestions. They are load-bearing components of the design.
+**What we do:** Every agent and skill definition includes 5-10 named failure modes, each with detection signals and resolution steps. These are not suggestions. They are load-bearing components of the design.
 
 **Why it works:** Without negative constraints, LLMs gravitate toward the center of their training distribution -- the most average, most generic output. This is the default behavior: produce something that looks plausible and sounds confident. Named anti-patterns serve two functions.
 
@@ -76,7 +76,7 @@ Premature termination (FM-3.1) and incomplete verification (FM-3.2) are particul
 
 ## 5. The Progressive Disclosure Principle
 
-**What we do:** Forge structures information in layers. Layer 1 (always loaded, ~200-500 tokens): role identity and domain vocabulary. Layer 2 (task-triggered, ~500-2000 tokens): SOPs and checklists for the current task type. Layer 3 (on-demand, 2000+ tokens): full documentation, examples, and reference material. Layer 4 (compressed): summaries of large inputs. Context is loaded based on need, not dumped in bulk.
+**What we do:** Structure information in layers. Layer 1 (always loaded, ~200-500 tokens): role identity and domain vocabulary. Layer 2 (task-triggered, ~500-2000 tokens): SOPs and checklists for the current task type. Layer 3 (on-demand, 2000+ tokens): full documentation, examples, and reference material. Layer 4 (compressed): summaries of large inputs. Context is loaded based on need, not dumped in bulk.
 
 **Why it works:** The attention mechanism creates a finite **attention budget** -- every token competes for weight, and adding tokens past the optimal zone actively degrades output. Research shows the optimal zone is 15-40% of the context window. Below 10%, the model lacks sufficient information and hallucinates. Above 60%, relevant information gets buried in noise.
 
@@ -92,7 +92,7 @@ Progressive disclosure also prevents **context poisoning** -- a phenomenon where
 
 ## 6. The Structured Artifact Principle
 
-**What we do:** Forge teams communicate through structured artifacts -- PRDs, ADRs, test reports, interface contracts -- with defined schemas and explicit acceptance criteria. Agents do not engage in free-form dialogue with each other.
+**What we do:** Teams communicate through structured artifacts -- PRDs, ADRs, test reports, interface contracts -- with defined schemas and explicit acceptance criteria. Agents do not engage in free-form dialogue with each other.
 
 **Why it works:** MetaGPT (Hong et al., 2023) demonstrated that multi-agent teams passing structured artifacts outperform those using open dialogue, reducing human revision cost by ~67% and improving executability by ~67% compared to dialogue-based approaches (computed from Table 1). The reasons are straightforward.
 
@@ -102,7 +102,7 @@ Progressive disclosure also prevents **context poisoning** -- a phenomenon where
 
 **The artifact chain is the audit trail.** In a structured pipeline, the sequence of artifacts tells the full story of how a decision was made and how work progressed. In a free-dialogue system, you must read the entire conversation history to reconstruct what happened. For any system that needs to be debugged, improved, or explained to a human, auditability is not optional.
 
-Forge operationalizes this by requiring every agent definition to specify its deliverables with exact formats, and every team blueprint to define an artifact chain showing which artifacts flow between which agents. The default communication topology is artifact handoff, not conversation. Free dialogue is reserved for human-facing explanations, never for inter-agent communication.
+This is operationalized by requiring every agent definition to specify its deliverables with exact formats, and every team blueprint to define an artifact chain showing which artifacts flow between which agents. The default communication topology is artifact handoff, not conversation. Free dialogue is reserved for human-facing explanations, never for inter-agent communication.
 
 **The evidence:** MetaGPT (Hong et al., 2023) demonstrated ~67% reduction in human revision cost and ~67% executability improvement (computed from Table 1: revision cost 2.5 → 0.83, executability 2.25 → 3.75) through artifact-based versus dialogue-based communication. Anthropic's "Building Effective Agents" (2024) recommended structured handoffs as the default communication pattern for multi-agent systems.
 
