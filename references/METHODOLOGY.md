@@ -2,6 +2,8 @@
 
 How to design agents and teams, why each principle exists, and the research behind it.
 
+Inspired by [Forge](https://github.com/jdforsythe/forge) by J.D. Forsythe — a Claude Code plugin for structured agent and team design.
+
 ---
 
 ## 1. The Vocabulary Routing Principle
