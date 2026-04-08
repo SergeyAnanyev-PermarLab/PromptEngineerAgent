@@ -106,32 +106,3 @@ This is operationalized by requiring every agent definition to specify its deliv
 
 **The evidence:** MetaGPT (Hong et al., 2023) demonstrated ~67% reduction in human revision cost and ~67% executability improvement (computed from Table 1: revision cost 2.5 → 0.83, executability 2.25 → 3.75) through artifact-based versus dialogue-based communication. Anthropic's "Building Effective Agents" (2024) recommended structured handoffs as the default communication pattern for multi-agent systems.
 
----
-
-## 7. Sources and Further Reading
-
-| Source | Year | Key Contribution | Used In |
-|---|---|---|---|
-| Ranjan, "One Word Is Not Enough" (arXiv:2512.06744) | 2025 | Semantic prompt prefixes improve embedding quality up to +0.66 Spearman (near-zero baseline models; +0.29 for models with existing baselines) | Principle 1 |
-| Schreiter, "How Prompt Vocabulary affects Domain Knowledge" (Gottingen) | 2024 | Optimal vocabulary specificity range; verb specificity disrupts reasoning | Principle 1 |
-| Anthropic, Context Engineering Guide | 2025 | Progressive disclosure, attention budget, layered context, 60-70% usable window | Principles 1, 5 |
-| IBM, Prompt Engineering Documentation | 2024 | Vocabulary precision as quality driver (practitioner guidance) | Principle 1 |
-| Hu et al., PRISM (USC, arXiv:2603.18507) | 2026 | Persona length gradient, alignment-accuracy tradeoff, verbosity bias | Principle 2 |
-| DigitalOcean, Prompt Engineering Guide | 2024 | Perspective-framing over identity assignment | Principle 2 |
-| Kim et al., "Towards a Science of Scaling Agent Systems" (arXiv:2512.08296) | 2025 | 45% threshold (p<0.001), cost multipliers, error amplification, sequential degradation 39-70% | Principle 3 |
-| Song et al., CaptainAgent (arXiv:2405.19425) | 2024 | Adaptive team composition outperforms static in 4/5 scenarios, up to +30.43% | Principle 3 |
-| Cemri et al., MAST (UC Berkeley, arXiv:2503.13657) | 2025 | 14 failure modes across specification (41.77%), misalignment (36.94%), verification (21.30%) | Principle 4 |
-| Zamfirescu-Pereira et al., "Why Johnny Can't Prompt" (CHI, UC Berkeley) | 2023 | Six patterns of user prompt failure; regression blindness; negative framing preference | Principle 4 |
-| Liu et al., "Lost in the Middle" (TACL) | 2024 | U-shaped attention: 90% start, 50-60% middle, 80-85% end | Principle 5 |
-| Chowdhury, "Lost in the Middle at Birth" (arXiv:2603.10123) | 2026 | U-shape is architectural (causal masking + residual), not learned; factorial middle suppression | Principle 5 |
-| Hong et al., MetaGPT (arXiv:2308.00352) | 2023 | Structured artifacts: 67% reduction in human revision cost, 67% executability improvement | Principle 6 |
-| Anthropic, "Building Effective Agents" | 2024 | Structured handoffs; 5 workflow patterns; tool optimization prioritized over prompt optimization | Principle 6 |
-
-Full research notes with detailed findings, data tables, and implementation guidance are in the [`docs/research/`](docs/research/) directory:
-
-- [`vocabulary-routing.md`](docs/research/vocabulary-routing.md) -- Term selection, clustering, the 15-year practitioner test, Schreiter Goldilocks zone
-- [`persona-science.md`](docs/research/persona-science.md) -- PRISM findings (Hu et al., 2026), persona length gradient, alignment-accuracy tradeoff
-- [`scaling-laws.md`](docs/research/scaling-laws.md) -- Kim et al. (2025) principles, cost multipliers, topology selection, 45% threshold
-- [`context-engineering.md`](docs/research/context-engineering.md) -- Attention budget, U-curve (architectural origin), progressive disclosure layers
-- [`failure-taxonomy.md`](docs/research/failure-taxonomy.md) -- All 14 MAST failure modes (Cemri et al., 2025) with detection and prevention
-- [`team-design.md`](docs/research/team-design.md) -- MetaGPT findings, CaptainAgent, cascade pattern, topology comparison
